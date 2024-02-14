@@ -70,3 +70,16 @@ func LoadConfig() (Config, error) {
 
 	return config, nil
 }
+
+func LoadConfigNostuct() (map[string]interface{}, error) {
+	viper.AddConfigPath("./")
+	viper.SetConfigFile(".env")
+	viper.ReadInConfig()
+	viper.AutomaticEnv()
+	config := viper.AllSettings()
+	if err := validator.New().Struct(config); err != nil {
+		return nil, err
+	}
+
+	return config, nil
+}

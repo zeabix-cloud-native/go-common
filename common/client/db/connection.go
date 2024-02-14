@@ -30,13 +30,5 @@ func NewConnectWriteDB(cfg config.Config) (*GormWrite, error) {
 	dbwrite, dbWErr := gorm.Open(postgres.Open(psqlWrite), &gorm.Config{
 		Logger: logger.Default.LogMode(logger.Error),
 	})
-	// if err := Migration(dbwrite); err != nil {
-	// 	return nil, fmt.Errorf("failed to migration database: %w", err)
-	// }
-	//init := NewInitDBValues(dbwrite)
-	//err := init.StartInit()
-	// if err != nil {
-	// 	return nil, fmt.Errorf("failed to init data to database: %w", err)
-	// }
 	return &GormWrite{DB: dbwrite}, dbWErr
 }
